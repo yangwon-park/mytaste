@@ -12,20 +12,21 @@ spring:
   datasource:
     app:
       driver-class-name: org.postgresql.Driver
-      url: ENC(y16sVt2AOcZTn9b9Yin+0Hqur8+IZUVwuWoKljOJp0RubT8/hBE6ak6zuKF4F9ucaXuIBf92ULYx5o6Ox0aoWFRQouOyMU/UvjfrsimRgXA17MensvG5+BUB+N2AT0Ye)
-      username: ENC(BOyPyqxOx6h10bGyM4Es9g==)
-      password: ENC(htO8FCfQT2H/hbKIylfiu0zjC0Fx9IP3)
+      url: ENC(nbd69nrSqB/XNsap0X4BBho5QZ6g5mIOtuT1JZpqgjBAT6rUQ/524zsNqui7r4sY+2pBSGdAgiLsJwdYRW+TBdMDFXfuYqkzsMZ2fl7Nh8fdZWMc/bd5ThOHtQAHOF2u)
+      username: ENC(iC7mB1dsNTspESgshgJoIfZxypFH10nD)
+      password: ENC(OJ1FF9s7fV9tw8nZ1LrH3e4UXUiWXJzl)
     log:
       driver-class-name: org.postgresql.Driver
-      url: ENC(y16sVt2AOcZTn9b9Yin+0Hqur8+IZUVwuWoKljOJp0RubT8/hBE6ak6zuKF4F9ucaXuIBf92ULYx5o6Ox0aoWFRQouOyMU/UvjfrsimRgXA17MensvG5+BUB+N2AT0Ye)
-      username: ENC(BOyPyqxOx6h10bGyM4Es9g==)
-      password: ENC(htO8FCfQT2H/hbKIylfiu0zjC0Fx9IP3)
+      url: ENC(nbd69nrSqB/XNsap0X4BBho5QZ6g5mIOtuT1JZpqgjBAT6rUQ/524zsNqui7r4sY+2pBSGdAgiLsJwdYRW+TBdMDFXfuYqkzsMZ2fl7Nh8fdZWMc/bd5ThOHtQAHOF2u)
+      username: ENC(iC7mB1dsNTspESgshgJoIfZxypFH10nD)
+      password: ENC(OJ1FF9s7fV9tw8nZ1LrH3e4UXUiWXJzl)
 
 logging:
   level:
     org.hibernate.SQL: debug
     org.hibernate.type: trace
 
+# DB 데이터 암호화 용도 => 이값 변경해야함
 aes:
   secret-key: ENC(fTa2qwMWVDf6dh0nqBhfE6tGobUjdmvFk0DQux6Ap1xnZW2Ym0R7NCgc2oqU26y0)
 

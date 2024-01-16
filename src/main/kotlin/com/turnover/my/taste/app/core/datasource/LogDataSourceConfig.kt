@@ -23,7 +23,7 @@ class LogDataSourceConfig(
 
     @Primary
     @Bean
-    fun appDataSource(@Qualifier("logDataSourceProperties") logDataSourceProperties: DataSourceProperties ): DataSource {
+    fun logDataSource(@Qualifier("logDataSourceProperties") logDataSourceProperties: DataSourceProperties ): DataSource {
         return logDataSourceProperties.initializeDataSourceBuilder().build()
     }
 }
