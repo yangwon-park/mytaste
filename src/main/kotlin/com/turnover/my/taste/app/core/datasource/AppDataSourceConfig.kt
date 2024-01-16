@@ -24,7 +24,12 @@ import javax.sql.DataSource
     transactionManagerRef = "appTransactionManager",
     basePackages = ["com.turnover.my.taste.app.repository"]
 )
-class AppDataSourceConfig{
+class AppDataSourceConfig {
+
+    @Bean
+    fun entityManagerFactoryBuilder(): EntityManagerFactoryBuilder {
+        return EntityManagerFactoryBuilder(HibernateJpaVendorAdapter(), HashMap<String, Any?>(), null)
+    }
 
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource.app")
@@ -48,11 +53,6 @@ class AppDataSourceConfig{
         return JpaTransactionManager(appEntityManagerFactory)
     }
 
-    @Bean
-    fun entityManagerFactoryBuilder(): EntityManagerFactoryBuilder {
-        return EntityManagerFactoryBuilder(HibernateJpaVendorAdapter(), HashMap<String, Any?>(), null)
-    }
-
     @Primary
     @Bean
     fun appEntityManagerFactory(
@@ -65,5 +65,4 @@ class AppDataSourceConfig{
             .persistenceUnit("appEntityManager")
             .build();
     }
-
 }

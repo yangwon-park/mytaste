@@ -27,8 +27,8 @@ logging:
     org.hibernate.type: trace
 
 # DB 데이터 암호화 용도 => 이값 변경해야함
-aes:
-  secret-key: ENC(fTa2qwMWVDf6dh0nqBhfE6tGobUjdmvFk0DQux6Ap1xnZW2Ym0R7NCgc2oqU26y0)
+#aes:
+#  secret-key: ENC(fTa2qwMWVDf6dh0nqBhfE6tGobUjdmvFk0DQux6Ap1xnZW2Ym0R7NCgc2oqU26y0)
 
 jasypt:
   encryptor:
