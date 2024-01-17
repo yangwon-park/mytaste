@@ -1,4 +1,4 @@
-package com.turnover.my.taste.app.advice.advice
+package com.turnover.my.taste.app.advice
 
 import com.turnover.my.taste.app.controller.common.CustomErrorResponse
 import com.turnover.my.taste.app.exception.DuplicateException
