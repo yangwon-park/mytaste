@@ -5,7 +5,7 @@ import com.turnover.my.taste.app.domain.embedded.BusinessTime
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "store", schema = "neighbor")
+@Table(name = "store", schema = "app")
 class Store(
 
     @Id

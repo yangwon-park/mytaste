@@ -13,6 +13,8 @@ class StoreController(
 
     @GetMapping
     fun initProject() {
-        println("ㅁㅇㄹ하ㅓㅣ무을히ㅏㅁㅇ르힘ㅇㄹ흼앓")
+        val size = storeService.getAllStore().size
+
+        println("size = ${size}")
     }
 }

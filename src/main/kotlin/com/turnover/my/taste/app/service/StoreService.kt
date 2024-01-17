@@ -1,5 +1,6 @@
 package com.turnover.my.taste.app.service
 
+import com.turnover.my.taste.app.domain.store.Store
 import com.turnover.my.taste.app.repository.store.StoreCustomRepository
 import com.turnover.my.taste.app.repository.store.StoreRepository
 import org.springframework.stereotype.Service
@@ -12,4 +13,7 @@ class StoreService(
     val storeCustomRepository: StoreCustomRepository,
 ) {
 
+    fun getAllStore(): MutableList<Store> {
+        return storeRepository.findAll();
+    }
 }
