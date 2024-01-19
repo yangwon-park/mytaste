@@ -14,5 +14,6 @@ data class Address(
 
     val zipcode: String,
 
-    val detail: String,
+    @Column(name = "detail_addr")
+    val detailAddr: String,
 )

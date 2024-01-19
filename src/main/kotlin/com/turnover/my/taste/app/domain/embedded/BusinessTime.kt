@@ -8,18 +8,18 @@ import java.time.LocalTime
 class BusinessTime(
 
     @Column(name = "opening_time")
-    val openingTime: LocalTime,
+    val openingTime: LocalTime?,
 
     @Column(name = "closing_time")
-    val closingTime: LocalTime,
+    val closingTime: LocalTime?,
 
     @Column(name = "break_start_time")
-    val breakStartTime: LocalTime,
+    val breakStartTime: LocalTime?,
 
     @Column(name = "break_end_time")
-    val breakEndTime: LocalTime,
+    val breakEndTime: LocalTime?,
 
     @Column(name = "last_order_time")
-    val lastOrderTime: LocalTime,
+    val lastOrderTime: LocalTime?,
 ) {
 }

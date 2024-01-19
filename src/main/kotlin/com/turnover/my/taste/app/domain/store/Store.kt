@@ -11,16 +11,33 @@ class Store(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "store_id")
-    val id: Long,
+    val id: Long? = null,
 
     val name: String,
 
-    @Column(columnDefinition = "varchar(20) default OPEN")
-    @Enumerated(EnumType.STRING)
-    val status: StoreStatus,
+    val lat: Double,
+
+    val lon: Double,
+
+    @Column(name = "phone_number")
+    val phoneNumber: String?,
+
+    val homepage: String,
+
+    val notice: String,
+
+    val intro: String,
 
     @Enumerated(EnumType.STRING)
-    val parkAvailable: ParkAvailable,
+    @Column(name = "store_status", columnDefinition = "varchar(20) default OPEN")
+    val storeStatus: StoreStatus,
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "park_status")
+    val parkStatus: ParkStatus,
+
+    @Column(name = "park_detail")
+    val parkDetail: String,
 
     @Embedded
     val address: Address,
@@ -28,6 +45,6 @@ class Store(
     @Embedded
     val businessTime: BusinessTime,
 
-) {
+    ) {
 
 }
