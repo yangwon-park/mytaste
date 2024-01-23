@@ -15,8 +15,6 @@ class StoreController(
 
     @PostMapping
     fun saveStore(@RequestBody request: StoreDTO.Save): Long? {
-        println("왜 안되노")
-        
         return storeService.saveStore(request);
     }
 }

@@ -14,10 +14,6 @@ class StoreService(
     val storeCustomRepository: StoreCustomRepository,
 ) {
 
-    fun getAllStore(): MutableList<Store> {
-        return storeRepository.findAll();
-    }
-
     @Transactional(rollbackFor = [Exception::class])
     fun saveStore(saveRequest: StoreDTO.Save): Long? {
         val entity = storeRepository.save(saveRequest.toEntity())
