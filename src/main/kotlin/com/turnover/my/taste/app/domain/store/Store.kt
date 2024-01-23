@@ -4,9 +4,10 @@ import com.turnover.my.taste.app.domain.embedded.Address
 import com.turnover.my.taste.app.domain.embedded.BusinessTime
 import jakarta.persistence.*
 
+
 @Entity
 @Table(name = "store", schema = "app")
-class Store(
+data class Store(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +21,7 @@ class Store(
     val lon: Double,
 
     @Column(name = "phone_number")
-    val phoneNumber: String?,
+    val phoneNumber: String,
 
     val homepage: String,
 

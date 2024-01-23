@@ -25,11 +25,11 @@ class StoreDTO {
 
         val phoneNumber: String,
 
+        val homepage: String,
+
         val notice: String,
 
         val intro: String,
-
-        val homepage: String,
 
         val parkStatus: ParkStatus,
 

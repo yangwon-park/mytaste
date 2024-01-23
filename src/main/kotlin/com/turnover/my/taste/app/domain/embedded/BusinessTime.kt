@@ -5,7 +5,7 @@ import jakarta.persistence.Embeddable
 import java.time.LocalTime
 
 @Embeddable
-class BusinessTime(
+data class BusinessTime(
 
     @Column(name = "opening_time")
     val openingTime: LocalTime?,
