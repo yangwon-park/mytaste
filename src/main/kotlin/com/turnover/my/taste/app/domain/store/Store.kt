@@ -1,5 +1,6 @@
 package com.turnover.my.taste.app.domain.store
 
+import com.turnover.my.taste.app.domain.common.BaseTimeEntity
 import com.turnover.my.taste.app.domain.embedded.Address
 import com.turnover.my.taste.app.domain.embedded.BusinessTime
 import jakarta.persistence.*
@@ -7,10 +8,9 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "store", schema = "app")
-class Store(
+class Store (
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "store_id")
     val id: Long? = null,
 
@@ -46,6 +46,6 @@ class Store(
     @Embedded
     val businessTime: BusinessTime,
 
-    ) {
+    ) : BaseTimeEntity() {
 
 }

@@ -12,11 +12,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener
 class BaseEntity(
     @CreatedBy
     @Column(name = "created_by", updatable = false)
-    val createdBy: String? = null,
+    var createdBy: String? = null,
 
     @LastModifiedBy
     @Column(name = "last_modified_by")
-    val lastModifiedBy: String? = null
+    var lastModifiedBy: String? = null
 ) : BaseTimeEntity() {
 
 
