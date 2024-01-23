@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 
 
 @RestController
-@RequestMapping("/member")
+@RequestMapping("/members")
 class MemberController(
     val memberService: MemberService,
 ) {

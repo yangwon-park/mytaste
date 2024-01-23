@@ -21,4 +21,8 @@ class StoreService(
 
         return entity.id
     }
+
+    fun getStores(): StoreDTO.SearchResult? {
+        return storeCustomRepository.getStores()
+    }
 }
