@@ -1,4 +1,4 @@
-package com.turnover.my.taste.app.service
+package com.turnover.my.taste.app.service.store
 
 import com.turnover.my.taste.app.domain.store.Store
 import com.turnover.my.taste.app.domain.store.dto.StoreDTO

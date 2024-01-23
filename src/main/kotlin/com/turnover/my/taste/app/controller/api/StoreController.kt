@@ -1,7 +1,7 @@
 package com.turnover.my.taste.app.controller.api
 
 import com.turnover.my.taste.app.domain.store.dto.StoreDTO
-import com.turnover.my.taste.app.service.StoreService
+import com.turnover.my.taste.app.service.store.StoreService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping

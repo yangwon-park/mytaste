@@ -8,8 +8,7 @@ import com.turnover.my.taste.app.domain.store.StoreStatus
 import com.turnover.my.taste.app.domain.store.dto.StoreDTO
 import com.turnover.my.taste.app.repository.store.StoreCustomRepository
 import com.turnover.my.taste.app.repository.store.StoreRepository
-import com.turnover.my.taste.app.service.StoreService
-import org.assertj.core.api.Assertions
+import com.turnover.my.taste.app.service.store.StoreService
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName

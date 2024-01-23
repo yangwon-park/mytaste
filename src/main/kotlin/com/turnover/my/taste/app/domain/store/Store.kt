@@ -7,7 +7,7 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "store", schema = "app")
-data class Store(
+class Store(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
