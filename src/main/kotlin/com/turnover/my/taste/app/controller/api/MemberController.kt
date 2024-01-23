@@ -22,8 +22,6 @@ class MemberController(
 
     @PostMapping("/join")
     fun joinMember(@RequestBody request: MemberDTO.JoinRequest): Long? {
-        println("request = ${request}")
-
         return memberService.joinMember(request)
     }
 }
