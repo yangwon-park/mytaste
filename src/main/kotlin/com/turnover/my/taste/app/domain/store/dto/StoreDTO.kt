@@ -7,6 +7,8 @@ import com.turnover.my.taste.app.domain.store.Store
 import com.turnover.my.taste.app.domain.store.StoreStatus
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
+import org.geolatte.geom.G2D
+import org.geolatte.geom.Point
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalTime
 
@@ -64,11 +66,12 @@ class StoreDTO {
         val lastOrderTime: LocalTime?,
     ) {
 
-        fun toEntity(): Store {
+        fun toEntity(point: Point<G2D>): Store {
             return Store(
                 name = name,
                 lat = lat,
                 lon = lon,
+                point = point,
                 phoneNumber = phoneNumber,
                 homepage = homepage,
                 notice = notice,

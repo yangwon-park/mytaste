@@ -4,6 +4,8 @@ import com.turnover.my.taste.app.domain.common.BaseTimeEntity
 import com.turnover.my.taste.app.domain.embedded.Address
 import com.turnover.my.taste.app.domain.embedded.BusinessTime
 import jakarta.persistence.*
+import org.geolatte.geom.G2D
+import org.geolatte.geom.Point
 
 
 @Entity
@@ -19,6 +21,8 @@ class Store (
     val lat: Double,
 
     val lon: Double,
+
+    var point: Point<G2D>,
 
     @Column(name = "phone_number")
     val phoneNumber: String,
@@ -48,4 +52,7 @@ class Store (
 
     ) : BaseTimeEntity() {
 
+    fun addPoint(point: Point<G2D>) {
+        this.point = point
+    }
 }

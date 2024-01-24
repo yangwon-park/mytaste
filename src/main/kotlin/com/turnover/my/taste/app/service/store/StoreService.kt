@@ -3,6 +3,9 @@ package com.turnover.my.taste.app.service.store
 import com.turnover.my.taste.app.domain.store.dto.StoreDTO
 import com.turnover.my.taste.app.repository.store.StoreCustomRepository
 import com.turnover.my.taste.app.repository.store.StoreRepository
+import org.geolatte.geom.builder.DSL.g
+import org.geolatte.geom.crs.CoordinateReferenceSystems.WGS84
+import org.geolatte.geom.builder.DSL.point
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -15,9 +18,9 @@ class StoreService(
 
     @Transactional(rollbackFor = [Exception::class])
     fun saveStore(request: StoreDTO.Save): Long? {
-        val entity = storeRepository.save(request.toEntity())
+        val store = request.toEntity(point(WGS84, g(request.lon, request.lat)))
 
-        return entity.id
+        return storeRepository.save(store).id
     }
 
     fun getStores(): List<StoreDTO.SearchResult> {
