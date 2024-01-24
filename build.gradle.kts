@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.ir.linkage.partial.PartialLinkageUtils.File.MissingDeclarations.module
 
 buildscript {
     repositories {
@@ -10,20 +9,20 @@ buildscript {
 plugins {
     id("org.springframework.boot") version "3.2.1"
     id("io.spring.dependency-management") version "1.1.4"
-    id("org.jetbrains.kotlin.jvm") version "1.9.21"
+    kotlin("jvm") version "1.9.21"
+    kotlin("kapt") version "1.9.21"
     id("org.jetbrains.kotlin.plugin.spring") version "1.9.21"
     id("org.jetbrains.kotlin.plugin.jpa") version "1.9.21"
-
-    kotlin("kapt") version "1.9.10"
 
     idea
 }
 
 group = "com.turnover.my"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_17
-
-val queryDslVersion = "5.0.0" // QueryDSL Version Setting
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
 repositories {
     mavenCentral()
@@ -46,7 +45,9 @@ dependencies {
     implementation("com.querydsl:querydsl-apt:5.0.0:jakarta")
     implementation("jakarta.persistence:jakarta.persistence-api")
     implementation("jakarta.annotation:jakarta.annotation-api")
-    kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
+
+    kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
+    kapt("org.springframework.boot:spring-boot-configuration-processor")
 
 //	developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly("org.postgresql:postgresql")
@@ -62,29 +63,7 @@ tasks.withType<KotlinCompile> {
     }
 }
 
-tasks.named("test") {
-    (this as org.gradle.api.tasks.testing.Test).useJUnitPlatform()
-//    useJUnitPlatform()
-}
-
-/**
- * QueryDSL Build Options
- */
-val querydslDir = "src/main/generated"
-
-sourceSets {
-    getByName("main").java.srcDirs(querydslDir)
-}
-
-tasks.withType<JavaCompile> {
-    options.generatedSourceOutputDirectory = file(querydslDir)
-
-    // 위의 설정이 안되면 아래 설정 사용
-    // options.generatedSourceOutputDirectory.set(file(querydslDir))
-}
-
-tasks.named("clean") {
-    doLast {
-        file(querydslDir).deleteRecursively()
-    }
-}
+//tasks.named("test") {
+//    (this as org.gradle.api.tasks.testing.Test).useJUnitPlatform()
+////    useJUnitPlatform()
+//}

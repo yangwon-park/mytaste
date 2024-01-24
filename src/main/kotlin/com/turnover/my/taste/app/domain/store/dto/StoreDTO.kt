@@ -83,11 +83,11 @@ class StoreDTO {
     }
 
     data class SearchResult(
-        val name: String,
+        val name: String?,
 
-        val lat: Double,
+        val lat: Double?,
 
-        val lon: Double
+        val lon: Double?
     ) {
 
     }

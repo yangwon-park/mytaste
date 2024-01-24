@@ -17,12 +17,10 @@ class StoreService(
     fun saveStore(request: StoreDTO.Save): Long? {
         val entity = storeRepository.save(request.toEntity())
 
-        println("entity = ${entity}")
-
         return entity.id
     }
 
-    fun getStores(): StoreDTO.SearchResult? {
+    fun getStores(): List<StoreDTO.SearchResult> {
         return storeCustomRepository.getStores()
     }
 }
