@@ -14,17 +14,15 @@ class StoreCustomRepository(
 
 
     fun getStores(): List<StoreDTO.SearchResult> {
-        return emptyList()
-
-//        return queryFactory
-//            .select(
-//                Projections.constructor(
-//                    StoreDTO.SearchResult::class.java,
-//                    store.name,
-//                    store.lat,
-//                    store.lon
-//            ))
-//            .from(store)
-//            .fetch();
+        return queryFactory
+            .select(
+                Projections.constructor(
+                    StoreDTO.SearchResult::class.java,
+                    store.name,
+                    store.lat,
+                    store.lon
+            ))
+            .from(store)
+            .fetch();
     }
 }
