@@ -38,14 +38,19 @@ dependencies {
 
     implementation("net.minidev:json-smart:2.4.9")
 
+    implementation("org.hibernate:hibernate-spatial:6.2.7.Final")
+
     // querydsl
     implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
     implementation("com.querydsl:querydsl-apt:5.0.0:jakarta")
     implementation("jakarta.persistence:jakarta.persistence-api")
     implementation("jakarta.annotation:jakarta.annotation-api")
+    implementation("com.querydsl:querydsl-sql-spatial:5.0.0")
 
     kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
     kapt("org.springframework.boot:spring-boot-configuration-processor")
+
+    // querydsl spatial
 
     runtimeOnly("org.postgresql:postgresql")
 
