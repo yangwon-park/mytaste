@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 
 
 @RestController
-@RequestMapping("/members")
+@RequestMapping("/api/members")
 class MemberController(
     val memberService: MemberService,
 ) {
@@ -20,8 +20,8 @@ class MemberController(
 
     }
 
-    @PostMapping("/join")
-    fun joinMember(@RequestBody request: MemberDTO.JoinRequest): Long? {
-        return memberService.joinMember(request)
+    @PostMapping("/signup")
+    fun signUpMember(@RequestBody request: MemberDTO.JoinRequest): Long? {
+        return memberService.signUpMember(request)
     }
 }

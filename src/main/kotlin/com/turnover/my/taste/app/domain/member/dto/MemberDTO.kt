@@ -6,7 +6,6 @@ import java.time.LocalDateTime
 class MemberDTO {
 
     data class JoinRequest(
-
         val snsId: String,
 
         val pushToken: String,
