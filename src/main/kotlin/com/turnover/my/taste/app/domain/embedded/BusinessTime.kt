@@ -21,5 +21,8 @@ data class BusinessTime(
 
     @Column(name = "last_order_time")
     val lastOrderTime: LocalTime?,
+
+    @Column(name = "off_day", length = 10)
+    val offDay: String?,
 ) {
 }
