@@ -19,6 +19,6 @@ class MemberService(
 
 
 
-        return memberRepository.save(request.toEntity()).id
+        return memberRepository.save(request.toMemberEntity()).id
     }
 }

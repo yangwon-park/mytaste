@@ -1,31 +1,56 @@
 package com.turnover.my.taste.app.domain.member.dto
 
 import com.turnover.my.taste.app.domain.member.Member
-import java.time.LocalDateTime
+import com.turnover.my.taste.app.domain.member.MemberPersonal
+import com.turnover.my.taste.app.domain.member.MemberSns
+import com.turnover.my.taste.app.domain.member.enums.Gender
+import com.turnover.my.taste.app.domain.member.enums.MemberStatus
+import com.turnover.my.taste.app.domain.member.enums.SnsKind
+import java.time.LocalDate
 
 class MemberDTO {
 
     data class JoinRequest(
-        val snsId: String,
 
-        val pushToken: String,
+        val status: MemberStatus,
 
         val nickname: String,
 
-        val joinRoute: String,
+        val intro: String,
 
-        val duplicateInfo: String,
+        val profileImageUrl: String,
+
+        val snsId: String,
+
+        val kind: SnsKind,
+
+        val phoneNumber: String,
+
+        val brithDate: LocalDate,
+
+        val gender: Gender,
     ) {
 
-        fun toEntity(): Member {
+        fun toMemberEntity(): Member {
             return Member(
-                snsId = snsId,
-                duplicateInfo = duplicateInfo,
+                status = status,
                 nickname = nickname,
-                joinRoute = joinRoute,
-                lastLoginTime = LocalDateTime.now()
+                intro = intro,
+                profileImageUrl = profileImageUrl
             )
         }
-    }
 
+        fun toMemberSnsEntity(): MemberSns {
+            return MemberSns(
+                snsId = "",
+                kind = kind)
+        }
+
+        fun toMemberPersonalEntity(): MemberPersonal {
+            return MemberPersonal(
+                phoneNumber = phoneNumber,
+                birthDate = brithDate,
+                gender = gender)
+        }
+    }
 }
