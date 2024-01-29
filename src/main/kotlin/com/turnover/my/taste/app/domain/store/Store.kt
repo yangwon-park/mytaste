@@ -10,7 +10,7 @@ import org.geolatte.geom.Point
 
 @Entity
 @Table(name = "store", schema = "app")
-class Store (
+class Store(
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "store_id")
@@ -22,7 +22,7 @@ class Store (
 
     val lon: Double,
 
-    var point: Point<G2D>,
+    var point: Point<G2D>? = null,
 
     @Column(name = "phone_number")
     val phoneNumber: String,

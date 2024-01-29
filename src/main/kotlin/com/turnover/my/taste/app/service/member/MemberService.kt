@@ -14,6 +14,11 @@ class MemberService(
 
     @Transactional(rollbackFor = [Exception::class])
     fun signUpMember(request: MemberDTO.JoinRequest): Long? {
+
+
+
+
+
         return memberRepository.save(request.toEntity()).id
     }
 }
