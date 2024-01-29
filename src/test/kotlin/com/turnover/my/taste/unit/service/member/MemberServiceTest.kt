@@ -9,5 +9,5 @@ import org.mockito.junit.jupiter.MockitoExtension
 class MemberServiceTest {
 
     @Mock
-    lateinit var memberRepository: MemberRepository,
+    lateinit var memberRepository: MemberRepository
 }

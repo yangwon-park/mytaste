@@ -50,7 +50,8 @@ dependencies {
     kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
     kapt("org.springframework.boot:spring-boot-configuration-processor")
 
-    // querydsl spatial
+    // kotlin-logging
+    implementation("io.github.oshai:kotlin-logging-jvm:5.1.0")
 
     runtimeOnly("org.postgresql:postgresql")
 
