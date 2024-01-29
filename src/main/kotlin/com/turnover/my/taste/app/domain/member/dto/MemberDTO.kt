@@ -12,7 +12,7 @@ class MemberDTO {
 
     data class SignUpRequest(
 
-        val status: MemberStatus,
+        val status: MemberStatus = MemberStatus.ACTIVE,
 
         val nickname: String,
 
@@ -22,11 +22,11 @@ class MemberDTO {
 
         val snsId: String,
 
-        val kind: SnsKind,
+        val snsKind: SnsKind,
 
         val phoneNumber: String,
 
-        val brithDate: LocalDate,
+        val birthDate: LocalDate,
 
         val gender: Gender,
     ) {
@@ -42,15 +42,17 @@ class MemberDTO {
 
         fun toMemberSnsEntity(): MemberSns {
             return MemberSns(
-                snsId = "",
-                kind = kind)
+                snsId = snsId,
+                snsKind = snsKind
+            )
         }
 
         fun toMemberPersonalEntity(): MemberPersonal {
             return MemberPersonal(
                 phoneNumber = phoneNumber,
-                birthDate = brithDate,
-                gender = gender)
+                birthDate = birthDate,
+                gender = gender
+            )
         }
     }
 }

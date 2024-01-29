@@ -13,6 +13,7 @@ class Member(
     @Column(name = "member_id")
     val id: Long? = null,
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 10)
     val status: MemberStatus, // default: ACTIVE
 
@@ -34,4 +35,10 @@ class Member(
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_personal_id")
     var memberPersonal: MemberPersonal? = null
+
+    fun linkPersonalAndSns(memberSns: MemberSns, memberPersonal: MemberPersonal) {
+        this.memberSns = memberSns
+        this.memberPersonal = memberPersonal
+    }
+
 }

@@ -18,10 +18,11 @@ class MemberPersonal(
     @Column(name = "birthdate", nullable = false)
     val birthDate: LocalDate,
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "gender", length = 10, nullable = false)
     val gender: Gender,
 ) {
 
-    @OneToOne(mappedBy = "memberPersonal")
+    @OneToOne(mappedBy = "memberPersonal", fetch = FetchType.LAZY)
     var member: Member? = null
 }

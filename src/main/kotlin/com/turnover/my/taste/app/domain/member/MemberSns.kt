@@ -14,8 +14,9 @@ class MemberSns(
     @Column(name = "sns_id", length = 100, nullable = false)
     val snsId: String,
 
-    @Column(name = "kind", length = 10, nullable = false)
-    val kind: SnsKind,
+    @Enumerated(EnumType.STRING)
+    @Column(name = "sns_kind", length = 10, nullable = false)
+    val snsKind: SnsKind,
 ) {
 
     @OneToOne(mappedBy = "memberSns")
