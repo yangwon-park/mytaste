@@ -17,13 +17,13 @@ class MemberPersonal(
     @Column(name = "member_personal_id")
     val id: Long? = null,
 
-    @Column(name = "phone_number")
+    @Column(name = "phone_number", length = 20, nullable = false)
     val phoneNumber: String,
 
-    @Column(name = "birth_date")
+    @Column(name = "birthdate", nullable = false)
     val birthDate: LocalDate,
 
-    @Column(name = "gender")
+    @Column(name = "gender", length = 10, nullable = false)
     val gender: Gender,
 ) {
 

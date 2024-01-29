@@ -11,10 +11,10 @@ class MemberSns(
     @Column(name = "member_sns_id")
     val id: Long? = null,
 
-    @Column(name = "sns_id")
+    @Column(name = "sns_id", length = 100, nullable = false)
     val snsId: String,
 
-    @Column(name = "kind")
+    @Column(name = "kind", length = 10, nullable = false)
     val kind: SnsKind,
 ) {
 
