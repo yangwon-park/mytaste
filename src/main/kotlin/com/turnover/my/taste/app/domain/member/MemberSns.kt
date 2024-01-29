@@ -18,4 +18,6 @@ class MemberSns(
     val kind: SnsKind,
 ) {
 
+    @OneToOne(mappedBy = "memberSns")
+    var member: Member? = null
 }

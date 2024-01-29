@@ -1,12 +1,7 @@
 package com.turnover.my.taste.app.domain.member
 
 import com.turnover.my.taste.app.domain.member.enums.Gender
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 import java.time.LocalDate
 
 @Entity
@@ -27,4 +22,6 @@ class MemberPersonal(
     val gender: Gender,
 ) {
 
+    @OneToOne(mappedBy = "memberPersonal")
+    var member: Member? = null
 }

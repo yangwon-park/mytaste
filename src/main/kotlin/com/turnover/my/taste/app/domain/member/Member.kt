@@ -13,18 +13,25 @@ class Member(
     @Column(name = "member_id")
     val id: Long? = null,
 
-    @Column(name = "status")
-    val status: MemberStatus,
+    @Column(name = "status", nullable = false, length = 10)
+    val status: MemberStatus, // default: ACTIVE
 
-    @Column(name = "nickname")
+    @Column(name = "nickname", length = 30)
     val nickname: String,
 
-    @Column(name = "intro")
+    @Column(name = "intro", length = 50)
     val intro: String?,
 
-    @Column(name ="profile_image_url")
+    @Column(name ="profile_image_url", length = 200)
     val profileImageUrl: String?,
 
 ) : BaseTimeEntity() {
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_sns_id")
+    var memberSns: MemberSns? = null
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_personal_id")
+    var memberPersonal: MemberPersonal? = null
 }
