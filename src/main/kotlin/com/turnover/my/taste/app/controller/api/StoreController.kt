@@ -16,8 +16,8 @@ class StoreController(
 ) {
 
     @GetMapping("/points")
-    fun getStoresPoints(): List<StoreDTO.StorePoints>{
-        return storeService.getStores()
+    fun getStoresPoints(): List<StoreDTO.StorePoint>{
+        return storeService.getStorePoints()
     }
 
     @GetMapping("/{storeId}/lite")

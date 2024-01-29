@@ -4,7 +4,6 @@ import com.querydsl.core.types.Projections
 import com.querydsl.jpa.impl.JPAQueryFactory
 import com.turnover.my.taste.app.domain.store.QStore.*
 import com.turnover.my.taste.app.domain.store.dto.StoreDTO
-import org.apache.catalina.Store
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -12,11 +11,11 @@ class StoreCustomRepository(
     val queryFactory: JPAQueryFactory
 ) {
 
-    fun getStores(): List<StoreDTO.StorePoints> {
+    fun getStorePoints(): List<StoreDTO.StorePoint> {
         return queryFactory
             .select(
                 Projections.constructor(
-                    StoreDTO.StorePoints::class.java,
+                    StoreDTO.StorePoint::class.java,
                     store.lat,
                     store.lon
             ))

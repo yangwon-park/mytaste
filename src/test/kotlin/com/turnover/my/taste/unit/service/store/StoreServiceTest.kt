@@ -9,6 +9,7 @@ import com.turnover.my.taste.app.domain.store.dto.StoreDTO
 import com.turnover.my.taste.app.repository.store.StoreCustomRepository
 import com.turnover.my.taste.app.repository.store.StoreRepository
 import com.turnover.my.taste.app.service.store.StoreService
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.assertj.core.api.Assertions.*
 import org.geolatte.geom.builder.DSL
 import org.geolatte.geom.crs.CoordinateReferenceSystems
@@ -22,10 +23,10 @@ import org.mockito.BDDMockito.*
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito.times
-import org.mockito.MockitoAnnotations
 import org.mockito.junit.jupiter.MockitoExtension
 import java.time.LocalTime
 
+private val logger = KotlinLogging.logger {}
 
 @ExtendWith(MockitoExtension::class)
 class StoreServiceTest {
@@ -41,9 +42,14 @@ class StoreServiceTest {
 
     private lateinit var saveRequest: StoreDTO.Save
 
+    private lateinit var storePointsResponse: ArrayList<StoreDTO.StorePoint>
+
+    private val point1: StoreDTO.StorePoint = StoreDTO.StorePoint(123.456, 35.678)
+    private val point2: StoreDTO.StorePoint = StoreDTO.StorePoint(142.123, 33.777)
+
     @BeforeEach
     fun setUp() {
-        MockitoAnnotations.openMocks(this)
+        storePointsResponse = ArrayList()
 
         saveRequest = StoreDTO.Save(
             "새로운 카페",
@@ -63,8 +69,25 @@ class StoreServiceTest {
             LocalTime.now().plusHours(3),
             LocalTime.now(),
             LocalTime.now(),
-            LocalTime.now()
+            LocalTime.now(),
+            "일요일"
         )
+
+        storePointsResponse.add(point1)
+        storePointsResponse.add(point2)
+    }
+
+    @Test
+    @DisplayName("매장 위경도 리스트 조회")
+    fun should_GetStorePoints() {
+        given(storeCustomRepository.getStorePoints()).willReturn(storePointsResponse)
+
+        val storePoints = storeService.getStorePoints()
+
+        then(storeCustomRepository).should(times(1)).getStorePoints()
+
+        assertThat(storePoints).hasSize(storePointsResponse.size)
+        assertThat(storePoints).containsExactly(point1, point2)
     }
 
     @Test
@@ -89,7 +112,8 @@ class StoreServiceTest {
                 LocalTime.now().plusHours(3),
                 LocalTime.now(),
                 LocalTime.now(),
-                LocalTime.now()
+                LocalTime.now(),
+                "월요일"
             )
         )
 

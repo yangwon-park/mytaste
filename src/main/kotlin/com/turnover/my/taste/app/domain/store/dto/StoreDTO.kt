@@ -88,7 +88,7 @@ class StoreDTO {
         }
     }
 
-    data class StorePoints(
+    data class StorePoint(
         val lat: Double,
 
         val lon: Double
