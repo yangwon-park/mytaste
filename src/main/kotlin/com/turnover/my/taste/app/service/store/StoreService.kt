@@ -1,6 +1,8 @@
 package com.turnover.my.taste.app.service.store
 
+import com.turnover.my.taste.app.controller.common.CustomErrorResponse
 import com.turnover.my.taste.app.domain.store.dto.StoreDTO
+import com.turnover.my.taste.app.exception.EntityNotFoundException
 import com.turnover.my.taste.app.repository.store.StoreCustomRepository
 import com.turnover.my.taste.app.repository.store.StoreRepository
 import org.geolatte.geom.builder.DSL.g
@@ -25,5 +27,10 @@ class StoreService(
 
     fun getStores(): List<StoreDTO.StorePoints> {
         return storeCustomRepository.getStores()
+    }
+
+    fun getStoreLiteDetailsByStoreId(storeId: Long): StoreDTO.LiteDetails {
+        return storeCustomRepository.getStoreLiteDetailsByStoreId(storeId)
+            ?: throw EntityNotFoundException("매장", storeId)
     }
 }

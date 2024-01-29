@@ -64,6 +64,8 @@ class StoreDTO {
         @field:NotNull
         @DateTimeFormat(pattern = "HH:mm")
         val lastOrderTime: LocalTime?,
+
+        val offDay: String?,
     ) {
 
         fun toEntity(point: Point<G2D>): Store {
@@ -80,7 +82,8 @@ class StoreDTO {
                 parkStatus = parkStatus,
                 parkDetail = parkDetail,
                 address = Address(roadAddr, numberAddr, zipcode, detailAddr),
-                businessTime = BusinessTime(openingTime, closingTime, breakStartTime, breakEndTime, lastOrderTime),
+                businessTime = BusinessTime(openingTime, closingTime, breakStartTime,
+                    breakEndTime, lastOrderTime, offDay),
             )
         }
     }
@@ -89,6 +92,17 @@ class StoreDTO {
         val lat: Double,
 
         val lon: Double
+    ) {
+
+    }
+
+    data class LiteDetails(
+
+        val name: String,
+
+        val address: Address,
+
+        val storeStatus: StoreStatus
     ) {
 
     }

@@ -3,6 +3,7 @@ package com.turnover.my.taste.app.controller.api
 import com.turnover.my.taste.app.domain.store.dto.StoreDTO
 import com.turnover.my.taste.app.service.store.StoreService
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -17,6 +18,11 @@ class StoreController(
     @GetMapping("/points")
     fun getStoresPoints(): List<StoreDTO.StorePoints>{
         return storeService.getStores()
+    }
+
+    @GetMapping("/{storeId}/lite")
+    fun getStoreLiteDetailsByStoreId(@PathVariable storeId: Long): StoreDTO.LiteDetails {
+        return storeService.getStoreLiteDetailsByStoreId(storeId)
     }
 
     @PostMapping
