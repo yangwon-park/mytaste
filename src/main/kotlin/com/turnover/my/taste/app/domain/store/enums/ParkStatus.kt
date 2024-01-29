@@ -1,4 +1,4 @@
-package com.turnover.my.taste.app.domain.store
+package com.turnover.my.taste.app.domain.store.enums
 
 enum class ParkStatus(val description: String) {
 

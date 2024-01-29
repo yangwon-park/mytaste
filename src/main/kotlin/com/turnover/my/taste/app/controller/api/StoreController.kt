@@ -14,8 +14,8 @@ class StoreController(
     val storeService: StoreService,
 ) {
 
-    @GetMapping
-    fun getStores(): List<StoreDTO.SearchResult>{
+    @GetMapping("/points")
+    fun getStoresPoints(): List<StoreDTO.StorePoints>{
         return storeService.getStores()
     }
 

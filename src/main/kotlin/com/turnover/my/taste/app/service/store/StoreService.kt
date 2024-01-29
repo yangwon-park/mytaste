@@ -23,7 +23,7 @@ class StoreService(
         return storeRepository.save(store).id
     }
 
-    fun getStores(): List<StoreDTO.SearchResult> {
+    fun getStores(): List<StoreDTO.StorePoints> {
         return storeCustomRepository.getStores()
     }
 }

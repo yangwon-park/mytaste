@@ -2,9 +2,9 @@ package com.turnover.my.taste.app.domain.store.dto
 
 import com.turnover.my.taste.app.domain.embedded.Address
 import com.turnover.my.taste.app.domain.embedded.BusinessTime
-import com.turnover.my.taste.app.domain.store.ParkStatus
+import com.turnover.my.taste.app.domain.store.enums.ParkStatus
 import com.turnover.my.taste.app.domain.store.Store
-import com.turnover.my.taste.app.domain.store.StoreStatus
+import com.turnover.my.taste.app.domain.store.enums.StoreStatus
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
 import org.geolatte.geom.G2D
@@ -85,10 +85,7 @@ class StoreDTO {
         }
     }
 
-    data class SearchResult(
-
-        val name: String,
-
+    data class StorePoints(
         val lat: Double,
 
         val lon: Double

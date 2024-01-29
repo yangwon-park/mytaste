@@ -2,9 +2,9 @@ package com.turnover.my.taste.unit.service.store
 
 import com.turnover.my.taste.app.domain.embedded.Address
 import com.turnover.my.taste.app.domain.embedded.BusinessTime
-import com.turnover.my.taste.app.domain.store.ParkStatus
+import com.turnover.my.taste.app.domain.store.enums.ParkStatus
 import com.turnover.my.taste.app.domain.store.Store
-import com.turnover.my.taste.app.domain.store.StoreStatus
+import com.turnover.my.taste.app.domain.store.enums.StoreStatus
 import com.turnover.my.taste.app.domain.store.dto.StoreDTO
 import com.turnover.my.taste.app.repository.store.StoreCustomRepository
 import com.turnover.my.taste.app.repository.store.StoreRepository

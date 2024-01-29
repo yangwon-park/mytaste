@@ -3,6 +3,8 @@ package com.turnover.my.taste.app.domain.store
 import com.turnover.my.taste.app.domain.common.BaseTimeEntity
 import com.turnover.my.taste.app.domain.embedded.Address
 import com.turnover.my.taste.app.domain.embedded.BusinessTime
+import com.turnover.my.taste.app.domain.store.enums.ParkStatus
+import com.turnover.my.taste.app.domain.store.enums.StoreStatus
 import jakarta.persistence.*
 import org.geolatte.geom.G2D
 import org.geolatte.geom.Point

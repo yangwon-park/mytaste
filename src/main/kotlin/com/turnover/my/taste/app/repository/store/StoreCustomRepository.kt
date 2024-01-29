@@ -11,13 +11,11 @@ class StoreCustomRepository(
     val queryFactory: JPAQueryFactory
 ) {
 
-
-    fun getStores(): List<StoreDTO.SearchResult> {
+    fun getStores(): List<StoreDTO.StorePoints> {
         return queryFactory
             .select(
                 Projections.constructor(
-                    StoreDTO.SearchResult::class.java,
-                    store.name,
+                    StoreDTO.StorePoints::class.java,
                     store.lat,
                     store.lon
             ))
