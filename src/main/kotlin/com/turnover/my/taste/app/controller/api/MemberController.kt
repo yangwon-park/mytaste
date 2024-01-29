@@ -21,7 +21,7 @@ class MemberController(
     }
 
     @PostMapping("/signup")
-    fun signUpMember(@RequestBody request: MemberDTO.JoinRequest): Long? {
+    fun signUpMember(@RequestBody request: MemberDTO.SignUpRequest): Long? {
         return memberService.signUpMember(request)
     }
 }

@@ -10,7 +10,7 @@ import java.time.LocalDate
 
 class MemberDTO {
 
-    data class JoinRequest(
+    data class SignUpRequest(
 
         val status: MemberStatus,
 

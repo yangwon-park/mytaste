@@ -13,7 +13,7 @@ class MemberService(
 ) {
 
     @Transactional(rollbackFor = [Exception::class])
-    fun signUpMember(request: MemberDTO.JoinRequest): Long? {
+    fun signUpMember(request: MemberDTO.SignUpRequest): Long? {
 
 
 
