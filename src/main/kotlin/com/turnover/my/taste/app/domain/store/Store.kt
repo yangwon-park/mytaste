@@ -4,6 +4,7 @@ import com.turnover.my.taste.app.domain.common.BaseEntity
 import com.turnover.my.taste.app.domain.common.BaseTimeEntity
 import com.turnover.my.taste.app.domain.embedded.Address
 import com.turnover.my.taste.app.domain.embedded.BusinessTime
+import com.turnover.my.taste.app.domain.menu.Menu
 import com.turnover.my.taste.app.domain.store.enums.ParkStatus
 import com.turnover.my.taste.app.domain.store.enums.StoreStatus
 import jakarta.persistence.*

@@ -15,7 +15,6 @@ import java.time.LocalTime
 class StoreDTO {
 
     data class Save(
-
         @field:NotBlank
         val name: String,
 
@@ -89,7 +88,6 @@ class StoreDTO {
     }
 
     data class StorePoint(
-
         val lat: Double,
 
         val lon: Double
@@ -98,7 +96,6 @@ class StoreDTO {
     }
 
     data class LiteDetails(
-
         val name: String,
 
         val address: Address,
