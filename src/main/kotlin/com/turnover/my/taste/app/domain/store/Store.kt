@@ -1,5 +1,6 @@
 package com.turnover.my.taste.app.domain.store
 
+import com.turnover.my.taste.app.domain.common.BaseEntity
 import com.turnover.my.taste.app.domain.common.BaseTimeEntity
 import com.turnover.my.taste.app.domain.embedded.Address
 import com.turnover.my.taste.app.domain.embedded.BusinessTime
@@ -36,8 +37,8 @@ class Store(
     val intro: String,
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "store_status", columnDefinition = "varchar(20) default OPEN")
-    val storeStatus: StoreStatus,
+    @Column(name = "status", columnDefinition = "varchar(20) default OPEN")
+    val status: StoreStatus,
 
     @Enumerated(EnumType.STRING)
     @Column(name = "park_status")
@@ -52,7 +53,7 @@ class Store(
     @Embedded
     val businessTime: BusinessTime,
 
-    ) : BaseTimeEntity() {
+    ) : BaseEntity() {
 
     fun addPoint(point: Point<G2D>) {
         this.point = point

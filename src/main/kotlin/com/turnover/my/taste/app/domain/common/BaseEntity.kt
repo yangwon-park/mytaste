@@ -9,7 +9,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener
 
 @EntityListeners(AuditingEntityListener::class)
 @MappedSuperclass
-class BaseEntity(
+open class BaseEntity(
     @CreatedBy
     @Column(name = "created_by", updatable = false)
     var createdBy: String? = null,

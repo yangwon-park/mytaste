@@ -78,7 +78,7 @@ class StoreDTO {
                 homepage = homepage,
                 notice = notice,
                 intro = intro,
-                storeStatus = StoreStatus.OPEN,
+                status = StoreStatus.OPEN,
                 parkStatus = parkStatus,
                 parkDetail = parkDetail,
                 address = Address(roadAddr, numberAddr, zipcode, detailAddr),
@@ -89,6 +89,7 @@ class StoreDTO {
     }
 
     data class StorePoint(
+
         val lat: Double,
 
         val lon: Double
