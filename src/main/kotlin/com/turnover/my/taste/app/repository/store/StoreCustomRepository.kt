@@ -30,7 +30,7 @@ class StoreCustomRepository(
                     StoreDTO.LiteDetails::class.java,
                     store.name,
                     store.address,
-                    store.storeStatus
+                    store.status
                 ))
             .from(store)
             .where(store.id.eq(storeId))
