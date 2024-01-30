@@ -45,6 +45,7 @@ class StoreServiceTest {
     private lateinit var storePointsResponse: ArrayList<StoreDTO.StorePoint>
 
     private val point1: StoreDTO.StorePoint = StoreDTO.StorePoint(123.456, 35.678)
+
     private val point2: StoreDTO.StorePoint = StoreDTO.StorePoint(142.123, 33.777)
 
     @BeforeEach
@@ -91,8 +92,8 @@ class StoreServiceTest {
     }
 
     @Test
-    @DisplayName("매장 저장")
-    fun should_SaveStore() {
+    @DisplayName("매장 저장 성공")
+    fun should_SucceedInSavingStore() {
         val mockStore = Store(
             1L,
             "새로운 카페",
