@@ -57,6 +57,10 @@ dependencies {
 
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    // https://mvnrepository.com/artifact/io.mockk/mockk
+    testImplementation("io.mockk:mockk:1.13.9")
+
 }
 
 tasks.withType<KotlinCompile> {
