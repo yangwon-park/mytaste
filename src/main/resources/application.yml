@@ -32,9 +32,23 @@ logging:
 #aes:
 #  secret-key: ENC(fTa2qwMWVDf6dh0nqBhfE6tGobUjdmvFk0DQux6Ap1xnZW2Ym0R7NCgc2oqU26y0)
 
+cloud:
+  aws:
+    s3:
+      bucket: my-taste
+    credentials:
+      access-key:
+      secret-key:
+    region:
+      static: ap-northeast-2
+      auto: false
+    stack:
+      auto: false
+
 jasypt:
   encryptor:
     bean: jasyptStringEncryptor
     property:
       prefix: ENC(
       suffix: )
+
