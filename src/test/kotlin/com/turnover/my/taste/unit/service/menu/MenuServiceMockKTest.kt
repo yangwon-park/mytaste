@@ -7,6 +7,7 @@ import com.turnover.my.taste.app.domain.menu.dto.MenuDTO
 import com.turnover.my.taste.app.domain.store.Store
 import com.turnover.my.taste.app.domain.store.enums.ParkStatus
 import com.turnover.my.taste.app.domain.store.enums.StoreStatus
+import com.turnover.my.taste.app.exception.EntityNotFoundException
 import com.turnover.my.taste.app.repository.menu.MenuCustomRepository
 import com.turnover.my.taste.app.repository.menu.MenuRepository
 import com.turnover.my.taste.app.repository.store.StoreRepository
@@ -15,7 +16,6 @@ import io.mockk.every
 import io.mockk.junit5.MockKExtension
 import io.mockk.mockk
 import io.mockk.verify
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.*
 import org.geolatte.geom.builder.DSL
 import org.geolatte.geom.crs.CoordinateReferenceSystems
@@ -33,20 +33,20 @@ class MenuServiceMockKTest {
 
     private val menuService = MenuService(menuRepository, menuCustomRepository, storeRepository)
 
+    private var expectedSavedMenu: Menu = Menu(
+        id = 1L,
+        name = "메뉴1",
+        price = 12000,
+        isSignature = false,
+        intro = "내가 맛있어요"
+    )
+
     @Test
-    fun `saveMenu saves and links menu correctly`() {
+    fun `메뉴 등록 성공`() {
         val saveRequest = MenuDTO.Save(
             storeId = 1L,
             name = "메뉴1",
             price = 12000,
-            intro = "내가 맛있어요"
-        )
-
-        val expectedSavedMenu =  Menu(
-            id = 1L,
-            name = "메뉴1",
-            price = 12000,
-            isSignature = false,
             intro = "내가 맛있어요"
         )
 
@@ -88,25 +88,27 @@ class MenuServiceMockKTest {
         assertThat(expectedMenuId).isEqualTo(result)
         assertThat(mockStore.menus).contains(expectedSavedMenu)
 
-        verify { storeRepository.findByIdOrNull(saveRequest.storeId) }
         verify { menuRepository.save(any(Menu::class)) }
+        verify { storeRepository.findByIdOrNull(saveRequest.storeId) }
     }
 
-//    @Test
-//    fun `saveMenu throws exception for invalid store id`() {
-//        val invalidMenuDto = MenuDTO.Save(
-//            storeId = 1L,
-//            name = "메뉴1",
-//            price = 12000,
-//            intro = "내가 맛있어요"
-//        )
-//
-//        every { storeRepository.findByIdOrNull(invalidMenuDto.storeId) } returns null
-//
-//        assertThrows<EntityNotFoundException> {
-//            menuService.saveMenu(invalidMenuDto)
-//        }
-//
-//        verify { storeRepository.findByIdOrNull(invalidMenuDto.storeId) }
-//    }
+    @Test
+    fun `메뉴 등록 실패 - 없는 매장에 메뉴 등록`() {
+        val saveRequest = MenuDTO.Save(
+            storeId = 1L,
+            name = "메뉴1",
+            price = 12000,
+            intro = "내가 맛있어요"
+        )
+
+        every { menuRepository.save(any(Menu::class))} returns expectedSavedMenu
+        every { storeRepository.findByIdOrNull(saveRequest.storeId) } returns null
+
+        assertThatThrownBy {
+            menuService.saveMenu(saveRequest)
+        }.isInstanceOf(EntityNotFoundException::class.java)
+
+        verify { menuRepository.save(any(Menu::class)) }
+        verify { storeRepository.findByIdOrNull(saveRequest.storeId) }
+    }
 }
