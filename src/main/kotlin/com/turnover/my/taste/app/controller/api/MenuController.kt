@@ -16,7 +16,6 @@ class MenuController(
 
     @PostMapping
     fun saveMenu(@RequestBody request: MenuDTO.Save): Long? {
-
         return menuService.saveMenu(request)
     }
 }

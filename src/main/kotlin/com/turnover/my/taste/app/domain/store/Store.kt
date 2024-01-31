@@ -15,7 +15,6 @@ import org.geolatte.geom.Point
 @Entity
 @Table(name = "store", schema = "app")
 class Store(
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "store_id")
     val id: Long? = null,
@@ -56,7 +55,15 @@ class Store(
 
     ) : BaseEntity() {
 
+    @OneToMany(mappedBy = "store", cascade = [CascadeType.PERSIST, CascadeType.DETACH])
+    var menus: ArrayList<Menu> = ArrayList()
+
     fun addPoint(point: Point<G2D>) {
         this.point = point
+    }
+
+    fun linkMenu(menu: Menu) {
+        this.menus.add(menu)
+        menu.linkStore(this)
     }
 }

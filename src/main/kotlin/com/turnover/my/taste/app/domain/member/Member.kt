@@ -8,7 +8,6 @@ import java.time.LocalDateTime
 @Entity
 @Table(name = "member", schema = "app")
 class Member(
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     val id: Long? = null,
@@ -23,10 +22,10 @@ class Member(
     @Column(name = "intro", length = 50)
     val intro: String?,
 
-    @Column(name ="profile_image_url", length = 200)
+    @Column(name = "profile_image_url", length = 200)
     val profileImageUrl: String?,
 
-) : BaseTimeEntity() {
+    ) : BaseTimeEntity() {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_sns_id")

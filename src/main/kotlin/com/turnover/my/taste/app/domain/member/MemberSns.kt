@@ -19,6 +19,6 @@ class MemberSns(
     val snsKind: SnsKind,
 ) {
 
-    @OneToOne(mappedBy = "memberSns")
+    @OneToOne(mappedBy = "memberSns", fetch = FetchType.LAZY)
     var member: Member? = null
 }

@@ -1,6 +1,7 @@
 package com.turnover.my.taste.app.domain.menu
 
 import com.turnover.my.taste.app.domain.common.BaseEntity
+import com.turnover.my.taste.app.domain.store.Store
 import jakarta.persistence.*
 
 @Entity
@@ -19,12 +20,16 @@ class Menu(
     @Column(name = "is_signature")
     val isSignature: Boolean,
 
-    @Column(name = "image_url", length = 200)
-    val imageUrl: String,
-
     @Column(name = "intro", length = 200)
     val intro: String,
 
     ) : BaseEntity() {
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_id")
+    var store: Store? = null
+
+    fun linkStore(store: Store) {
+        this.store = store
+    }
 }

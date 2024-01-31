@@ -9,19 +9,28 @@ import com.turnover.my.taste.app.domain.store.enums.ParkStatus
 import com.turnover.my.taste.app.domain.store.enums.StoreStatus
 import com.turnover.my.taste.app.repository.menu.MenuCustomRepository
 import com.turnover.my.taste.app.repository.menu.MenuRepository
+import com.turnover.my.taste.app.repository.store.StoreRepository
 import com.turnover.my.taste.app.service.menu.MenuService
+import io.github.oshai.kotlinlogging.KotlinLogging
+import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.*
 import org.geolatte.geom.builder.DSL
 import org.geolatte.geom.crs.CoordinateReferenceSystems
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.ArgumentCaptor
 import org.mockito.BDDMockito.*
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.junit.jupiter.MockitoExtension
+import org.springframework.data.repository.findByIdOrNull
 
 import java.time.LocalTime
+import java.util.Optional
+
+private val logger = KotlinLogging.logger {}
 
 @ExtendWith(MockitoExtension::class)
 class MenuServiceTest {
@@ -31,6 +40,9 @@ class MenuServiceTest {
 
     @Mock
     lateinit var menuCustomRepository: MenuCustomRepository
+
+    @Mock
+    lateinit var storeRepository: StoreRepository
 
     @InjectMocks
     lateinit var menuService: MenuService
@@ -45,7 +57,6 @@ class MenuServiceTest {
             storeId = 1L,
             name = "메뉴1",
             price = 12000,
-            imageUrl = "URL",
             intro = "내가 맛있어요"
         )
 
@@ -85,13 +96,25 @@ class MenuServiceTest {
             id = 1L,
             name = "메뉴1",
             price = 12000,
-            imageUrl = "URL",
             isSignature = false,
             intro = "내가 맛있어요"
         )
 
         given(menuRepository.save(any())).willReturn(mockMenu)
 
-        menuService.saveMenu(saveRequest)
+        logger.info { store.name }
+
+//      확장 함수는 mockito에서 지원하지 않음
+//        given(storeRepository.findByIdOrNull(store.id)).willReturn(store)
+        given(storeRepository.findById(store.id!!)).willReturn(Optional.of(store))
+
+        val menuId = menuService.saveMenu(saveRequest)
+
+        val argumentCaptor = ArgumentCaptor.forClass(Menu::class.java)
+
+        then(menuRepository).should(times(1)).save(argumentCaptor.capture())
+        then(storeRepository).should(times(1)).findByIdOrNull(store.id)
+
+        assertThat(menuId).isEqualTo(mockMenu.id)
     }
 }

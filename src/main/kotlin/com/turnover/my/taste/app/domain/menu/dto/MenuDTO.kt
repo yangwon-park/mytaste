@@ -11,8 +11,6 @@ class MenuDTO {
 
         val price: Int,
 
-        val imageUrl: String,
-
         val intro: String,
     ) {
         fun toEntity(): Menu {
@@ -20,10 +18,7 @@ class MenuDTO {
                 name = name,
                 price = price,
                 isSignature = false,
-                imageUrl = imageUrl,
                 intro = intro)
         }
-
-
     }
 }
