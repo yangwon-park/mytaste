@@ -53,6 +53,10 @@ dependencies {
     // kotlin-logging
     implementation("io.github.oshai:kotlin-logging-jvm:5.1.0")
 
+    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-aws
+    implementation("org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE")
+
+
     runtimeOnly("org.postgresql:postgresql")
 
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
