@@ -11,51 +11,46 @@ import com.turnover.my.taste.app.repository.menu.MenuCustomRepository
 import com.turnover.my.taste.app.repository.menu.MenuRepository
 import com.turnover.my.taste.app.repository.store.StoreRepository
 import com.turnover.my.taste.app.service.menu.MenuService
+import io.mockk.every
 import io.mockk.junit5.MockKExtension
+import io.mockk.mockk
+import io.mockk.verify
+import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.*
 import org.geolatte.geom.builder.DSL
 import org.geolatte.geom.crs.CoordinateReferenceSystems
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.ArgumentCaptor
-import org.mockito.BDDMockito.*
-import org.mockito.InjectMocks
-import org.mockito.Mock
 import org.springframework.data.repository.findByIdOrNull
-
 import java.time.LocalTime
 
 @ExtendWith(MockKExtension::class)
-class MenuServiceTest {
+class MenuServiceMockKTest {
 
-    @Mock
-    lateinit var menuRepository: MenuRepository
+    private val menuRepository = mockk<MenuRepository>()
+    private val menuCustomRepository = mockk<MenuCustomRepository>()
+    private val storeRepository = mockk<StoreRepository>()
 
-    @Mock
-    lateinit var menuCustomRepository: MenuCustomRepository
+    private val menuService = MenuService(menuRepository, menuCustomRepository, storeRepository)
 
-    @Mock
-    lateinit var storeRepository: StoreRepository
-
-    @InjectMocks
-    lateinit var menuService: MenuService
-
-    private lateinit var saveRequest: MenuDTO.Save
-
-    private lateinit var store: Store
-
-    @BeforeEach
-    fun setUp() {
-        saveRequest = MenuDTO.Save(
+    @Test
+    fun `saveMenu saves and links menu correctly`() {
+        val saveRequest = MenuDTO.Save(
             storeId = 1L,
             name = "메뉴1",
             price = 12000,
             intro = "내가 맛있어요"
         )
 
-        store = Store(
+        val expectedSavedMenu =  Menu(
+            id = 1L,
+            name = "메뉴1",
+            price = 12000,
+            isSignature = false,
+            intro = "내가 맛있어요"
+        )
+
+        val mockStore = Store(
             1L,
             "새로운 카페",
             123.456,
@@ -82,30 +77,36 @@ class MenuServiceTest {
                 "월요일"
             )
         )
+
+        val expectedMenuId = expectedSavedMenu.id
+
+        every { menuRepository.save(any(Menu::class)) } returns expectedSavedMenu
+        every { storeRepository.findByIdOrNull(saveRequest.storeId) } returns mockStore
+
+        val result = menuService.saveMenu(saveRequest)
+
+        assertThat(expectedMenuId).isEqualTo(result)
+        assertThat(mockStore.menus).contains(expectedSavedMenu)
+
+        verify { storeRepository.findByIdOrNull(saveRequest.storeId) }
+        verify { menuRepository.save(any(Menu::class)) }
     }
 
-    @Test
-    @DisplayName("메뉴 등록 성공")
-    fun should_SucceedSavingMenu() {
-        val mockMenu = Menu(
-            id = 1L,
-            name = "메뉴1",
-            price = 12000,
-            isSignature = false,
-            intro = "내가 맛있어요"
-        )
-
-        given(menuRepository.save(any())).willReturn(mockMenu)
-
-        given(storeRepository.findByIdOrNull(store.id)).willReturn(store)
-
-        val menuId = menuService.saveMenu(saveRequest)
-
-        val argumentCaptor = ArgumentCaptor.forClass(Menu::class.java)
-
-        then(menuRepository).should(times(1)).save(argumentCaptor.capture())
-        then(storeRepository).should(times(1)).findByIdOrNull(store.id)
-
-        assertThat(menuId).isEqualTo(mockMenu.id)
-    }
+//    @Test
+//    fun `saveMenu throws exception for invalid store id`() {
+//        val invalidMenuDto = MenuDTO.Save(
+//            storeId = 1L,
+//            name = "메뉴1",
+//            price = 12000,
+//            intro = "내가 맛있어요"
+//        )
+//
+//        every { storeRepository.findByIdOrNull(invalidMenuDto.storeId) } returns null
+//
+//        assertThrows<EntityNotFoundException> {
+//            menuService.saveMenu(invalidMenuDto)
+//        }
+//
+//        verify { storeRepository.findByIdOrNull(invalidMenuDto.storeId) }
+//    }
 }

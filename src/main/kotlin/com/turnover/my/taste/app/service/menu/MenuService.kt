@@ -27,7 +27,7 @@ class MenuService(
 
         store.linkMenu(savedMenu)
 
-        return 123L
+        return savedMenu.id
     }
 
 }
