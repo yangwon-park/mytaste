@@ -1,4 +1,4 @@
-package com.turnover.my.taste.app.core
+package com.turnover.my.taste.app.core.config
 
 import com.querydsl.jpa.impl.JPAQueryFactory
 import jakarta.persistence.EntityManager

@@ -1,4 +1,4 @@
-package com.turnover.my.taste.app.core.security
+package com.turnover.my.taste.app.core.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -19,6 +19,7 @@ class SpringSecurityConfig {
                     .requestMatchers("/api/**").permitAll()
                     .anyRequest().authenticated()
             }
+            .formLogin { it.disable() }
             .httpBasic { it.disable() }
 
         return http.build()
