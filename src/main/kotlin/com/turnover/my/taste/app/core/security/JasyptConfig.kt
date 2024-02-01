@@ -1,4 +1,4 @@
-package com.turnover.my.taste.app.core
+package com.turnover.my.taste.app.core.security
 
 import org.jasypt.encryption.StringEncryptor
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor
