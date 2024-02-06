@@ -30,6 +30,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
@@ -56,11 +58,17 @@ dependencies {
     // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-aws
     implementation("org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE")
 
-
     runtimeOnly("org.postgresql:postgresql")
+
+    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api
+    implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+
+    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
 
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.security:spring-security-test")
 
     // https://mvnrepository.com/artifact/io.mockk/mockk
     testImplementation("io.mockk:mockk:1.13.9")

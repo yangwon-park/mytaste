@@ -25,10 +25,8 @@ spring:
 logging:
   level:
     org.hibernate.SQL: debug
-    org.hibernate.type: trace
-    org.hibernate.type.BasicTypeRegistry: trace
-
-# DB 데이터 암호화 용도 => 이값 변경해야함
+    org.hibernate.type: info
+    org:springframework.security: debug
 #aes:
 #  secret-key: ENC(fTa2qwMWVDf6dh0nqBhfE6tGobUjdmvFk0DQux6Ap1xnZW2Ym0R7NCgc2oqU26y0)
 
@@ -51,4 +49,5 @@ jasypt:
     property:
       prefix: ENC(
       suffix: )
+
 
