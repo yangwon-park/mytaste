@@ -1,4 +1,4 @@
-package com.turnover.my.taste.app.core.config
+package com.turnover.my.taste.app.core.config.datasource
 
 import jakarta.persistence.EntityManagerFactory
 import org.springframework.beans.factory.annotation.Qualifier
