@@ -50,4 +50,7 @@ jasypt:
       prefix: ENC(
       suffix: )
 
-
+jwt:
+  token-validity-in-sec: 600
+  refresh-token-validity-in-sec: 604800
+  secret-key: asd
