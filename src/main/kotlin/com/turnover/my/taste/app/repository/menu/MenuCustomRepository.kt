@@ -8,4 +8,5 @@ class MenuCustomRepository(
     val queryFactory: JPAQueryFactory
 ) {
 
+
 }
