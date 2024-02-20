@@ -27,29 +27,18 @@ class AuthController(
 
     @PostMapping("/authenticate")
     fun authorize(@RequestBody loginDTO: MemberDTO.LoginRequest): ResponseEntity<TokenDTO>? {
-        logger.info { "되라" }
-
         val authenticationToken = UsernamePasswordAuthenticationToken(loginDTO.username, "1234")
 
-        try {
-            val authentication = authenticationManagerBuilder.`object`.authenticate(authenticationToken)
-            SecurityContextHolder.getContext().authentication = authentication
+        // 이 시점에 loadByUsername 호출
+        val authentication = authenticationManagerBuilder.`object`.authenticate(authenticationToken)
+        
+        SecurityContextHolder.getContext().authentication = authentication
 
-            val jwt:String = tokenProvider.createAccessToken(authentication)
-            logger.info { "되라22" }
+        val jwt: String = tokenProvider.createAccessToken(authentication)
 
-            val httpHeaders = HttpHeaders()
-            httpHeaders.add(HttpHeaders.AUTHORIZATION, "Bearer $jwt")
+        val httpHeaders = HttpHeaders()
+        httpHeaders.add(HttpHeaders.AUTHORIZATION, "Bearer $jwt")
 
-            logger.info { "되라33" }
-
-            return ResponseEntity<TokenDTO>(TokenDTO(jwt), httpHeaders, HttpStatus.OK)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            logger.error { e.message }
-        }
-
-
-        return null
+        return ResponseEntity<TokenDTO>(TokenDTO(jwt), httpHeaders, HttpStatus.OK)
     }
 }
