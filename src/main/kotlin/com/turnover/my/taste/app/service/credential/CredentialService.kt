@@ -11,9 +11,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.stereotype.Component
 
 private val logger = KotlinLogging.logger {}
 
+@Component
 class CredentialService(
     private val memberRepository: MemberRepository,
     private val memberCustomRepository: MemberCustomRepository,

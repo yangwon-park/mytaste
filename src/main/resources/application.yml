@@ -54,5 +54,5 @@ jwt:
   header: Authorization
   token-validity-in-seconds: 600
   refresh-token-validity-in-seconds: 604800
-  secret-key: 06sDw3XXOU2H+v31crClj5OLMnuJJjgAVgiw7l0kU3L6vH7lDxSUlTaqXfaagLFgLHYQH7G+090= # dev
-#  secret-key: fExwY7yGgErM6kYNpqKd6q0u6jBuXDBn2ElcC/DRKHnWqiG2KNB7aHabQACPL4lISdexMlyH7RM= # prod
+  secret-key: dG0Fs5olfpv6uRHAEZFVcqGmbDeHaTor7i9g2k9EufzPtyZtOu/HYkqdT6rGlKIaexA+pv+2ntU9xaAg76w83Q== # dev
+#  secret-key: 2pK4e1jkZfPehFMMPLK9QTVpbGsI0diD9b/kwUyLWMZrSVOQSCJ7rTIeIbvXWEsXADznxg+pZR+XXbmdERBAvA== # prod

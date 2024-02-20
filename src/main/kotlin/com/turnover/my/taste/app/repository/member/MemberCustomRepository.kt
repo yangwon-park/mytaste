@@ -4,6 +4,7 @@ import com.querydsl.core.QueryFactory
 import com.querydsl.jpa.impl.JPAQueryFactory
 import com.turnover.my.taste.app.domain.member.Member
 import com.turnover.my.taste.app.domain.member.QMember
+import com.turnover.my.taste.app.domain.member.QMember.*
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -13,7 +14,8 @@ class MemberCustomRepository(
 
     fun findByNickname(nickname: String): Member? {
         return queryFactory
-            .selectFrom(QMember.member)
+            .selectFrom(member)
+            .where(member.nickname.eq(nickname))
             .fetchOne()
     }
 }

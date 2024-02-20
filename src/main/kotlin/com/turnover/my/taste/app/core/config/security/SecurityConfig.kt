@@ -1,19 +1,17 @@
 package com.turnover.my.taste.app.core.config.security
 
-import com.turnover.my.taste.app.core.config.security.jwt.JwtAccessDeniedHandler
-import com.turnover.my.taste.app.core.config.security.jwt.JwtAuthenticationEntryPoint
-import com.turnover.my.taste.app.core.config.security.jwt.JwtSecurityConfig
-import com.turnover.my.taste.app.core.config.security.jwt.TokenProvider
+import com.turnover.my.taste.app.core.jwt.JwtAccessDeniedHandler
+import com.turnover.my.taste.app.core.jwt.JwtAuthenticationEntryPoint
+import com.turnover.my.taste.app.core.jwt.TokenProvider
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.security.config.annotation.SecurityConfigurerAdapter
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.crypto.password.NoOpPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
-import org.springframework.security.web.DefaultSecurityFilterChain
 import org.springframework.security.web.SecurityFilterChain
 
 @Configuration
@@ -26,7 +24,8 @@ class SecurityConfig(
 ) {
     @Bean
     fun passwordEncoder(): PasswordEncoder {
-        return BCryptPasswordEncoder()
+//        return BCryptPasswordEncoder()
+        return NoOpPasswordEncoder.getInstance()
     }
 
     @Bean

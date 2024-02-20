@@ -10,6 +10,12 @@ import java.time.LocalDate
 
 class MemberDTO {
 
+    data class LoginRequest(
+        val username: String,
+    ) {
+
+    }
+
     data class SignUpRequest(
 
         val status: MemberStatus = MemberStatus.ACTIVE,
