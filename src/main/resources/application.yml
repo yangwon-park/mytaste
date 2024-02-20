@@ -51,6 +51,7 @@ jasypt:
       suffix: )
 
 jwt:
-  token-validity-in-sec: 600
-  refresh-token-validity-in-sec: 604800
-  secret-key: asd
+  token-validity-in-seconds: 600
+  refresh-token-validity-in-seconds: 604800
+  secret-key: 06sDw3XXOU2H+v31crClj5OLMnuJJjgAVgiw7l0kU3L6vH7lDxSUlTaqXfaagLFgLHYQH7G+090= # dev
+#  secret-key: fExwY7yGgErM6kYNpqKd6q0u6jBuXDBn2ElcC/DRKHnWqiG2KNB7aHabQACPL4lISdexMlyH7RM= # prod

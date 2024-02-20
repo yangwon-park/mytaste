@@ -12,14 +12,15 @@ private val logger = KotlinLogging.logger {}
 class TokenProvider(
     private val jwtConfig: JwtConfig,
 
-    @Value("\${jwt.token-validity-in-sec}")
-    private val JWT_TOKEN_VALIDITY: String,
+    @Value("\${jwt.token-validity-in-seconds}")
+    private final val JWT_TOKEN_VALIDITY: String,
 
-    @Value("\${jwt.refresh-token-validity-in-sec}")
-    private val REFRESH_TOKEN_VALIDITY: Long,
+    @Value("\${jwt.refresh-token-validity-in-seconds}")
+    private final val REFRESH_TOKEN_VALIDITY: Long,
+
+    @Value("\${jwt.secret-key}")
+    private final val SECRET_KEY: String,
 ): InitializingBean {
-
-
 
     // Bean 생성 후 secret 값을 Base64 Decode하여 변수에 할당하기 위함
     override fun afterPropertiesSet() {
