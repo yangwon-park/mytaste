@@ -6,14 +6,13 @@ import jakarta.servlet.FilterChain
 import jakarta.servlet.ServletException
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
-import org.apache.http.auth.AUTH
 import org.springframework.web.filter.OncePerRequestFilter
 
 import org.springframework.http.HttpHeaders.AUTHORIZATION
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.util.StringUtils
 
-private val logger = KotlinLogging.logger {}
+private val kLogger = KotlinLogging.logger {}
 
 class JwtFilter(
     private val tokenProvider: TokenProvider,
@@ -35,6 +34,7 @@ class JwtFilter(
 
             SecurityContextHolder.getContext().authentication = authentication
 
+            kLogger.debug { "Security Context에 '$authentication.name' 인증 정보 저장 완료. URI: $requestURI" }
             logger.debug { "Security Context에 '$authentication.name' 인증 정보 저장 완료. URI: $requestURI" }
         } else {
             logger.debug { "유효한 JWT가 없습니다. URI: $requestURI" }

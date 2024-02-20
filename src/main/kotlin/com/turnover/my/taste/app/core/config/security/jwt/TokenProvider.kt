@@ -32,13 +32,9 @@ class TokenProvider(
     private val REFRESH_TOKEN_VALIDITY: Long,
 ) : InitializingBean {
 
-    private val tokenValidityInMilliseconds: Long
+    private final val tokenValidityInMilliseconds: Long = JWT_TOKEN_VALIDITY * 1000
 
     private var key: Key? = null
-
-    init {
-        tokenValidityInMilliseconds = JWT_TOKEN_VALIDITY * 1000
-    }
 
     companion object {
         private const val AUTHORITIES_KEY = "AUTH"
