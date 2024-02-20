@@ -51,6 +51,7 @@ jasypt:
       suffix: )
 
 jwt:
+  header: Authorization
   token-validity-in-seconds: 600
   refresh-token-validity-in-seconds: 604800
   secret-key: 06sDw3XXOU2H+v31crClj5OLMnuJJjgAVgiw7l0kU3L6vH7lDxSUlTaqXfaagLFgLHYQH7G+090= # dev
