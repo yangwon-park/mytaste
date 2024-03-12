@@ -16,8 +16,8 @@ private val kLogger = KotlinLogging.logger {}
 
 class JwtFilter(
     private val tokenProvider: TokenProvider,
+    private val BEARER_PREFIX: String = "Bearer ",
 ) : OncePerRequestFilter() {
-    private val BEARER_PREFIX: String = "Bearer "
 
     // 토큰의 인증 정보를 SecurityContext에 저장하는 역할 수행
     @Throws(IOException::class, ServletException::class)
@@ -35,9 +35,8 @@ class JwtFilter(
             SecurityContextHolder.getContext().authentication = authentication
 
             kLogger.debug { "Security Context에 '$authentication.name' 인증 정보 저장 완료. URI: $requestURI" }
-            logger.debug { "Security Context에 '$authentication.name' 인증 정보 저장 완료. URI: $requestURI" }
         } else {
-            logger.debug { "유효한 JWT가 없습니다. URI: $requestURI" }
+            kLogger.debug { "유효한 JWT가 없습니다. URI: $requestURI" }
         }
 
         filterChain.doFilter(request, response)

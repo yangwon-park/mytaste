@@ -2,6 +2,7 @@ package com.turnover.my.taste.app.controller.api
 
 import com.turnover.my.taste.app.domain.store.dto.StoreDTO
 import com.turnover.my.taste.app.service.store.StoreService
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -16,6 +17,7 @@ class StoreController(
 ) {
 
     @GetMapping("/points")
+    @PreAuthorize("hasAnyRole('USER')")
     fun getStoresPoints(): List<StoreDTO.StorePoint>{
         return storeService.getStorePoints()
     }
