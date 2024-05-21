@@ -1,4 +1,4 @@
-package com.turnover.my.taste.app.core.config.security.jwt
+package com.turnover.my.taste.app.core.jwt
 
 import io.jsonwebtoken.io.IOException
 import jakarta.servlet.http.HttpServletRequest

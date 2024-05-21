@@ -1,4 +1,4 @@
-package com.turnover.my.taste.app.core.config.security.jwt
+package com.turnover.my.taste.app.core.jwt
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.jsonwebtoken.*
@@ -14,12 +14,14 @@ import org.springframework.security.core.userdetails.User
 import org.springframework.stereotype.Component
 import java.security.Key
 import java.util.Arrays
-import java.util.Collections
 import java.util.Date
 import java.util.stream.Collectors
 
 private val logger = KotlinLogging.logger {}
 
+/**
+ * pp에서 JwtConfig
+ */
 @Component
 class TokenProvider(
     @Value("\${jwt.secret-key}")
@@ -99,11 +101,11 @@ class TokenProvider(
         } catch (e: MalformedJwtException) {
             logger.info { "잘못된 JWT 서명입니다." }
         } catch (e: ExpiredJwtException) {
-            logger.info {"만료된 JWT 토큰입니다."}
+            logger.info { "만료된 JWT 토큰입니다." }
         } catch (e: UnsupportedJwtException) {
-            logger.info {"지원되지 않는 JWT 토큰입니다."}
+            logger.info { "지원되지 않는 JWT 토큰입니다." }
         } catch (e: IllegalArgumentException) {
-            logger.info {"JWT 토큰이 잘못되었습니다."}
+            logger.info { "JWT 토큰이 잘못되었습니다." }
         }
 
         return false
