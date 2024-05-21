@@ -1,6 +1,5 @@
 package com.turnover.my.taste.app.controller.api
 
-import com.turnover.my.taste.app.core.jwt.JwtFilter
 import com.turnover.my.taste.app.core.jwt.TokenProvider
 import com.turnover.my.taste.app.domain.member.dto.MemberDTO
 import com.turnover.my.taste.app.domain.member.dto.TokenDTO

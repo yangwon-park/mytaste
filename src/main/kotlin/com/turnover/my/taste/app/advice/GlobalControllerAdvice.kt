@@ -15,7 +15,6 @@ class GlobalControllerAdvice {
 
     @ExceptionHandler(EntityNotFoundException::class)
     fun entityNotFoundExceptionHandler(e: EntityNotFoundException): CustomErrorResponse {
-
         logger.error { e.message }
 
         return CustomErrorResponse(SC_INTERNAL_SERVER_ERROR, e.message)

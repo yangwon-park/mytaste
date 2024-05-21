@@ -7,6 +7,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.web.DefaultSecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
+/**
+ * pp에서 jwtConfigurer
+ */
 class JwtSecurityConfig(
     private val tokenProvider: TokenProvider,
 ): SecurityConfigurerAdapter<DefaultSecurityFilterChain?, HttpSecurity>() {
