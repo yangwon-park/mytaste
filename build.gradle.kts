@@ -60,6 +60,13 @@ dependencies {
 
     runtimeOnly("org.postgresql:postgresql")
 
+    // redis
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    implementation("it.ozimov:embedded-redis:0.7.3") {
+        exclude(group = "org.slf4j", module = "slf4j-simple")
+    }
+    implementation("org.redisson:redisson-spring-boot-starter:3.20.0")
+
     // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api
     implementation("io.jsonwebtoken:jjwt-api:0.11.5")
 
@@ -73,7 +80,6 @@ dependencies {
 
     // https://mvnrepository.com/artifact/io.mockk/mockk
     testImplementation("io.mockk:mockk:1.13.9")
-
 }
 
 tasks.withType<KotlinCompile> {
