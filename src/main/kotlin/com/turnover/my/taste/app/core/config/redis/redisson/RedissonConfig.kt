@@ -1,4 +1,4 @@
-package com.turnover.my.taste.app.core.config.redis
+package com.turnover.my.taste.app.core.config.redis.redisson
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Configuration
@@ -6,11 +6,11 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 @ConfigurationProperties(prefix = "spring.redisson")
 class RedissonConfiguration {
-    private val mode: RedisMode? = null
-    private val password: String? = null
-    private val nodes: List<String>? = null
+    val mode: RedisMode? = RedisMode.SINGLE
+    val password: String? = ""
+    val nodes: List<String>? = mutableListOf()
 
-    internal enum class RedisMode {
+    enum class RedisMode {
         SINGLE, CLUSTER
     }
 }
