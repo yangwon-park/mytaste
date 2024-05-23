@@ -78,8 +78,12 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
 
-    // https://mvnrepository.com/artifact/io.mockk/mockk
+    // KoTest, MockK, fixture
+    implementation("io.kotest.extensions:kotest-extensions-spring:1.1.3")
+    testImplementation("io.kotest:kotest-assertions-core:5.8.1")
+    testImplementation("io.kotest:kotest-runner-junit5:5.8.1")
     testImplementation("io.mockk:mockk:1.13.9")
+    implementation("com.appmattus.fixture:fixture:1.1.0")
 }
 
 tasks.withType<KotlinCompile> {
