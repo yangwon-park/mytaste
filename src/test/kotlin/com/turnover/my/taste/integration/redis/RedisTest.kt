@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
 
 @SpringBootTest
-@Transactional
+@Transactional(readOnly = true)
 @ActiveProfiles("dev")
 class RedisTest @Autowired constructor(
     private val bookMarkRedisRepository: BookmarkRedisRepository
@@ -18,14 +18,18 @@ class RedisTest @Autowired constructor(
 
     "북마크 저장 테스트" {
         val bookmark = Bookmark(
-            125L,
+            12115L,
             "장소1",
             LocalDateTime.now()
         )
 
         val savedBookMark = bookMarkRedisRepository.save(bookmark)
 
-        print(savedBookMark)
+        println(savedBookMark)
+
+        val all = bookMarkRedisRepository.findAll()
+
+        print(all)
     }
 }) {
 }

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration
 @ConfigurationProperties(prefix = "spring.redisson")
 class RedissonConfiguration {
     val mode: RedisMode? = RedisMode.SINGLE
-    val password: String? = ""
+    val password: String? = null
     val nodes: List<String>? = mutableListOf()
 
     enum class RedisMode {
