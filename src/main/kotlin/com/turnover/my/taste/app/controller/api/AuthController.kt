@@ -33,11 +33,16 @@ class AuthController(
         
         SecurityContextHolder.getContext().authentication = authentication
 
-        val jwt: String = tokenProvider.createAccessToken(authentication)
+        val accessToken: String = tokenProvider.createAccessToken(authentication)
+        val refreshToken: String = tokenProvider.createRefreshToken(authentication)
 
         val httpHeaders = HttpHeaders()
-        httpHeaders.add(HttpHeaders.AUTHORIZATION, "Bearer $jwt")
+        httpHeaders.add(HttpHeaders.AUTHORIZATION, "Bearer $accessToken")
 
-        return ResponseEntity<TokenDTO>(TokenDTO(jwt), httpHeaders, HttpStatus.OK)
+        return ResponseEntity<TokenDTO>(
+            TokenDTO(accessToken, refreshToken),
+            httpHeaders,
+            HttpStatus.OK
+        )
     }
 }

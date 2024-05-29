@@ -23,9 +23,8 @@ class Member(
     val intro: String?,
 
     @Column(name = "profile_image_url", length = 200)
-    val profileImageUrl: String?,
-
-    ) : BaseTimeEntity() {
+    val profileImageUrl: String?
+) : BaseTimeEntity() {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_sns_id")

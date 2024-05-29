@@ -12,11 +12,11 @@ import org.springframework.http.HttpHeaders.AUTHORIZATION
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.util.StringUtils
 
-private val kLogger = KotlinLogging.logger {}
+private val log = KotlinLogging.logger {}
 
 class JwtFilter(
     private val tokenProvider: TokenProvider,
-    private val BEARER_PREFIX: String = "Bearer ",
+
 ) : OncePerRequestFilter() {
 
     // 토큰의 인증 정보를 SecurityContext에 저장하는 역할 수행
@@ -34,9 +34,9 @@ class JwtFilter(
 
             SecurityContextHolder.getContext().authentication = authentication
 
-            kLogger.debug { "Security Context에 '$authentication.name' 인증 정보 저장 완료. URI: $requestURI" }
+            log.debug { "Security Context에 '$authentication.name' 인증 정보 저장 완료. URI: $requestURI" }
         } else {
-            kLogger.debug { "유효한 JWT가 없습니다. URI: $requestURI" }
+            log.debug { "유효한 JWT가 없습니다. URI: $requestURI" }
         }
 
         filterChain.doFilter(request, response)
@@ -48,5 +48,9 @@ class JwtFilter(
         return if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER_PREFIX)) {
             bearerToken.substring(7)
         } else null
+    }
+
+    companion object {
+        private const val BEARER_PREFIX: String = "Bearer "
     }
 }
