@@ -11,7 +11,7 @@ import redis.embedded.RedisServer
 private val log = KotlinLogging.logger {  }
 
 @Configuration
-@EnableRedisRepositories(basePackages = ["com.turnover.my.taste.app.repository.bookmark"])
+@EnableRedisRepositories(basePackages = ["com.turnover.my.taste.app.repository.token"])
 class RedisConfig(
     @Value("\${spring.data.redis.port}")
     private val port: Int,

@@ -23,7 +23,7 @@ import javax.sql.DataSource
     basePackages = ["com.turnover.my.taste.app.repository"],
     excludeFilters = [ComponentScan.Filter(
         type = FilterType.ASSIGNABLE_TYPE,
-        classes = [com.turnover.my.taste.app.repository.bookmark.BookmarkRedisRepository::class]
+        classes = [com.turnover.my.taste.app.repository.token.RefreshTokenRepository::class]
     )]
 )
 class AppDataSourceConfig {

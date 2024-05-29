@@ -3,6 +3,8 @@ package com.turnover.my.taste.app.controller.api
 import com.turnover.my.taste.app.core.jwt.TokenProvider
 import com.turnover.my.taste.app.domain.member.dto.MemberDTO
 import com.turnover.my.taste.app.domain.member.dto.TokenDTO
+import com.turnover.my.taste.app.domain.token.RefreshToken
+import com.turnover.my.taste.app.repository.token.RefreshTokenRepository
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
@@ -21,6 +23,7 @@ private val logger = KotlinLogging.logger {}
 @RequestMapping("/api")
 class AuthController(
     val tokenProvider: TokenProvider,
+    val refreshTokenRepository: RefreshTokenRepository,
     val authenticationManagerBuilder: AuthenticationManagerBuilder,
 ) {
 
@@ -35,6 +38,8 @@ class AuthController(
 
         val accessToken: String = tokenProvider.createAccessToken(authentication)
         val refreshToken: String = tokenProvider.createRefreshToken(authentication)
+
+        refreshTokenRepository.save(RefreshToken(loginDTO.memberId, refreshToken))
 
         val httpHeaders = HttpHeaders()
         httpHeaders.add(HttpHeaders.AUTHORIZATION, "Bearer $accessToken")
