@@ -11,6 +11,7 @@ import java.time.LocalDate
 class MemberDTO {
 
     data class LoginRequest(
+        val memberId: Long,
         val username: String,
     ) {
 

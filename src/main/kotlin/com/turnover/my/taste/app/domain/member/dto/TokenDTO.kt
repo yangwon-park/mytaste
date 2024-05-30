@@ -1,7 +1,8 @@
 package com.turnover.my.taste.app.domain.member.dto
 
 data class TokenDTO(
-    var token: String? = null
+    val accessToken: String? = null,
+    val refreshToken: String? = null,
 ) {
 
 }

@@ -3,6 +3,8 @@ package com.turnover.my.taste.app.controller.api
 import com.turnover.my.taste.app.core.jwt.TokenProvider
 import com.turnover.my.taste.app.domain.member.dto.MemberDTO
 import com.turnover.my.taste.app.domain.member.dto.TokenDTO
+import com.turnover.my.taste.app.domain.token.RefreshToken
+import com.turnover.my.taste.app.repository.token.RefreshTokenRepository
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
@@ -20,8 +22,9 @@ private val logger = KotlinLogging.logger {}
 @RestController
 @RequestMapping("/api")
 class AuthController(
-    val tokenProvider: TokenProvider,
-    val authenticationManagerBuilder: AuthenticationManagerBuilder,
+    private val tokenProvider: TokenProvider,
+    private val refreshTokenRepository: RefreshTokenRepository,
+    private val authenticationManagerBuilder: AuthenticationManagerBuilder,
 ) {
 
     @PostMapping("/authenticate")
@@ -33,11 +36,18 @@ class AuthController(
         
         SecurityContextHolder.getContext().authentication = authentication
 
-        val jwt: String = tokenProvider.createAccessToken(authentication)
+        val accessToken: String = tokenProvider.createAccessToken(authentication)
+        val refreshToken: String = tokenProvider.createRefreshToken(authentication)
+
+        refreshTokenRepository.save(RefreshToken(loginDTO.memberId, refreshToken))
 
         val httpHeaders = HttpHeaders()
-        httpHeaders.add(HttpHeaders.AUTHORIZATION, "Bearer $jwt")
+        httpHeaders.add(HttpHeaders.AUTHORIZATION, "Bearer $accessToken")
 
-        return ResponseEntity<TokenDTO>(TokenDTO(jwt), httpHeaders, HttpStatus.OK)
+        return ResponseEntity<TokenDTO>(
+            TokenDTO(accessToken, refreshToken),
+            httpHeaders,
+            HttpStatus.OK
+        )
     }
 }
