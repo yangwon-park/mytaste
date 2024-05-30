@@ -5,13 +5,11 @@ import jakarta.annotation.PostConstruct
 import jakarta.annotation.PreDestroy
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Configuration
-import org.springframework.data.redis.repository.configuration.EnableRedisRepositories
 import redis.embedded.RedisServer
 
 private val log = KotlinLogging.logger {  }
 
 @Configuration
-@EnableRedisRepositories(basePackages = ["com.turnover.my.taste.app.repository.token"])
 class RedisConfig(
     @Value("\${spring.data.redis.port}")
     private val port: Int,

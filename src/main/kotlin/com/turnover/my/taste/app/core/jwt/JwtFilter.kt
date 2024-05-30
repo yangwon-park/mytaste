@@ -16,7 +16,6 @@ private val log = KotlinLogging.logger {}
 
 class JwtFilter(
     private val tokenProvider: TokenProvider,
-
 ) : OncePerRequestFilter() {
 
     // 토큰의 인증 정보를 SecurityContext에 저장하는 역할 수행

@@ -22,9 +22,9 @@ private val logger = KotlinLogging.logger {}
 @RestController
 @RequestMapping("/api")
 class AuthController(
-    val tokenProvider: TokenProvider,
-    val refreshTokenRepository: RefreshTokenRepository,
-    val authenticationManagerBuilder: AuthenticationManagerBuilder,
+    private val tokenProvider: TokenProvider,
+    private val refreshTokenRepository: RefreshTokenRepository,
+    private val authenticationManagerBuilder: AuthenticationManagerBuilder,
 ) {
 
     @PostMapping("/authenticate")
